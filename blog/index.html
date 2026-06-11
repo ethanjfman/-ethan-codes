@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethan Codes | A 10-Year-Old's Roblox Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:    #f9a8d4;
+      --purple:  #c084fc;
+      --blue:    #93c5fd;
+      --yellow:  #fde68a;
+      --green:   #86efac;
+      --bg:      #0f0f1a;
+      --surface: #1a1a2e;
+      --card:    #1e1e35;
+      --border:  #2e2e50;
+      --text:    #e2e8f0;
+      --muted:   #94a3b8;
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; background: linear-gradient(90deg, var(--pink), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(192,132,252,0.15), transparent),
+                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(249,168,212,0.1), transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(192,132,252,0.15); border: 1px solid rgba(192,132,252,0.3);
+      color: var(--purple); border-radius: 999px;
+      padding: 0.35rem 1rem; font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--blue) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 580px; font-size: 1.15rem; color: var(--muted);
+      margin: 0 auto 2.5rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.75rem 1.75rem; border-radius: 999px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      display: inline-block; cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+    .btn-primary { background: linear-gradient(135deg, var(--pink), var(--purple)); color: #0f0f1a; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 4rem; padding-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--pink), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple);
+      margin-bottom: 0.75rem;
+    }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+    .section-intro { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin-bottom: 3rem; }
+
+    /* STORY */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .story-grid { grid-template-columns: 1fr; } }
+    .story-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .story-card .icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .story-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .story-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--purple), var(--blue));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 2.5rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2.4rem; top: 0.4rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--purple); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(192,132,252,0.3);
+    }
+    .timeline-date { font-size: 0.75rem; color: var(--purple); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .timeline-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .timeline-body { font-size: 0.9rem; color: var(--muted); }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .tag {
+      font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 999px;
+      font-weight: 500;
+    }
+    .tag-pink { background: rgba(249,168,212,0.15); color: var(--pink); }
+    .tag-blue { background: rgba(147,197,253,0.15); color: var(--blue); }
+    .tag-green { background: rgba(134,239,172,0.15); color: var(--green); }
+    .tag-yellow { background: rgba(253,230,138,0.15); color: var(--yellow); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem;
+      display: flex; align-items: flex-start; gap: 0.85rem;
+    }
+    .skill-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .skill-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .skill-desc { font-size: 0.82rem; color: var(--muted); }
+
+    /* CODE SAMPLE */
+    .code-block {
+      background: #0d0d1a; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin: 2rem 0;
+    }
+    .code-header {
+      background: var(--card); padding: 0.75rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .code-title { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+    .code-dots { display: flex; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+    pre {
+      padding: 1.5rem; overflow-x: auto;
+      font-family: 'Fira Code', monospace; font-size: 0.85rem; line-height: 1.7;
+    }
+    .kw { color: #ff79c6; }
+    .fn { color: #50fa7b; }
+    .str { color: #f1fa8c; }
+    .cm { color: #6272a4; font-style: italic; }
+    .num { color: #bd93f9; }
+    .prop { color: #8be9fd; }
+
+    /* TIPS */
+    .tips-list { display: flex; flex-direction: column; gap: 1rem; }
+    .tip {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .tip-num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.8rem; color: #0f0f1a;
+      margin-top: 0.1rem;
+    }
+    .tip-text { font-size: 0.95rem; }
+    .tip-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+    .tip-text span { color: var(--muted); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(249,168,212,0.1), rgba(192,132,252,0.1));
+      border: 1px solid rgba(192,132,252,0.3);
+      border-radius: var(--radius); padding: 3rem 2rem;
+      text-align: center; max-width: 900px; margin: 0 auto 6rem;
+    }
+    .cta-banner h2 { margin-bottom: 0.75rem; }
+    .cta-banner p { color: var(--muted); margin-bottom: 2rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    footer span { color: var(--pink); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">✦ Ethan Codes</span>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#tips">For Parents</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🎮 Age 10 · Roblox Studio · Lua Scripting</div>
+  <h1>A kid, a game, and<br/><span class="gradient">the first line of code.</span></h1>
+  <p>Follow Ethan's journey from complete beginner to building a published Roblox game — traps, gamepasses, and all. A story for every parent who's wondered if their kid is ready to learn to code.</p>
+  <div class="hero-cta">
+    <a href="#journey" class="btn btn-primary">Read the Journey</a>
+    <a href="#tips" class="btn btn-outline">Tips for Parents</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Obby Stages Built</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Scripts Mastered</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Published Game</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Prior Experience</div></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="section-tag">The Beginning</div>
+  <h2>How it started</h2>
+  <p class="section-intro">Ethan is 10 years old and loves Roblox. One day he asked: <em>"Can I make my own game?"</em> — and we said yes.</p>
+  <div class="story-grid">
+    <div class="story-card">
+      <div class="icon">🎮</div>
+      <h3>Already a player</h3>
+      <p>Ethan had been playing Roblox for years — he knew what made games fun. That turned out to be a huge advantage when it came to designing his own.</p>
+    </div>
+    <div class="story-card">
+      <div class="icon">🧠</div>
+      <h3>Zero coding experience</h3>
+      <p>He'd never written a line of code before. No Scratch, no Python, nothing. Roblox Studio and Lua were his first programming environment.</p>
+    </div>
+    <div class="story-card">
+      <div class="icon">🌈</div>
+      <h3>His vision</h3>
+      <p>A pastel rainbow obby (obstacle course) with moving platforms, kill bricks, spinning traps — and eventually, gamepasses to earn real Robux.</p>
+    </div>
+    <div class="story-card">
+      <div class="icon">💡</div>
+      <h3>The big insight</h3>
+      <p>Kids learn fastest when the output is something they already care about. Ethan didn't want to learn to code — he wanted to build a game. The coding came along for the ride.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="section-tag">Session Log</div>
+  <h2>The journey so far</h2>
+  <p class="section-intro">Each session, something new clicks. Here's how it's unfolded.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Session 1 · June 2026</div>
+      <div class="timeline-title">First scripts. First bugs. First breakthroughs.</div>
+      <div class="timeline-body">
+        Ethan's first day of real scripting. He got kill bricks working, then spent a full session debugging why his moving platform wouldn't move — trying BodyPosition, TweenService, and direct Position assignment before finally landing on CFrame. The platform not only moved, it carried him with it.
+        <br/><br/>
+        The biggest moment: he spotted the bug himself. His script said <code style="background:rgba(255,255,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-family:'Fira Code',monospace;font-size:0.82rem;">Part1</code> but his Explorer said <code style="background:rgba(255,255,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-family:'Fira Code',monospace;font-size:0.82rem;">part1</code>. One capital letter. He found it.
+      </div>
+      <div class="timeline-tags">
+        <span class="tag tag-pink">Kill Bricks</span>
+        <span class="tag tag-blue">Moving Platforms</span>
+        <span class="tag tag-green">CFrame</span>
+        <span class="tag tag-yellow">Debugging</span>
+      </div>
+    </div>
+
+    <div class="timeline-item" style="opacity:0.5;">
+      <div class="timeline-date">Session 2 · Coming soon</div>
+      <div class="timeline-title">Disappearing platforms & first gamepass</div>
+      <div class="timeline-body">This session hasn't happened yet — check back soon.</div>
+    </div>
+
+  </div>
+
+  <!-- CODE SAMPLE -->
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+      <div class="code-title">MovingPlatform.lua — Ethan's first working script</div>
+    </div>
+    <pre><span class="cm">-- Ethan's moving platform</span>
+<span class="cm">-- Written in Session 1 after trying 4 different approaches</span>
+
+<span class="kw">local</span> <span class="prop">main</span> = <span class="prop">script</span>.<span class="prop">Parent</span>
+<span class="prop">main</span>.<span class="prop">Anchored</span> = <span class="kw">true</span>
+
+<span class="kw">local</span> <span class="prop">startPos</span> = <span class="prop">main</span>.<span class="prop">CFrame</span>
+<span class="kw">local</span> <span class="prop">moveDistance</span> = <span class="num">50</span>
+
+<span class="kw">while</span> <span class="kw">true</span> <span class="kw">do</span>
+    <span class="kw">for</span> i = <span class="num">0</span>, <span class="prop">moveDistance</span>, <span class="num">0.1</span> <span class="kw">do</span>
+        <span class="prop">main</span>.<span class="prop">CFrame</span> = <span class="prop">startPos</span> * <span class="fn">CFrame.new</span>(i, <span class="num">0</span>, <span class="num">0</span>)
+        <span class="fn">task.wait</span>(<span class="num">0.01</span>)
+    <span class="kw">end</span>
+    <span class="kw">for</span> i = <span class="prop">moveDistance</span>, <span class="num">0</span>, -<span class="num">0.1</span> <span class="kw">do</span>
+        <span class="prop">main</span>.<span class="prop">CFrame</span> = <span class="prop">startPos</span> * <span class="fn">CFrame.new</span>(i, <span class="num">0</span>, <span class="num">0</span>)
+        <span class="fn">task.wait</span>(<span class="num">0.01</span>)
+    <span class="kw">end</span>
+<span class="kw">end</span></pre>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">What He's Learned</div>
+  <h2>Skills unlocked so far</h2>
+  <p class="section-intro">Real concepts, genuinely understood — not just copy-pasted.</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">🔁</div><div><div class="skill-name">while true do loops</div><div class="skill-desc">Makes things repeat forever — the engine of every moving part</div></div></div>
+    <div class="skill-card"><div class="skill-icon">📦</div><div><div class="skill-name">script.Parent</div><div class="skill-desc">How a script talks to the part it lives inside</div></div></div>
+    <div class="skill-card"><div class="skill-icon">📐</div><div><div class="skill-name">CFrame movement</div><div class="skill-desc">Smooth 3D movement that actually carries the player</div></div></div>
+    <div class="skill-card"><div class="skill-icon">🔥</div><div><div class="skill-name">Touched events</div><div class="skill-desc">Detecting when a player walks into something</div></div></div>
+    <div class="skill-card"><div class="skill-icon">🌀</div><div><div class="skill-name">CFrame.Angles</div><div class="skill-desc">Spinning objects on any axis</div></div></div>
+    <div class="skill-card"><div class="skill-icon">🐛</div><div><div class="skill-name">Case-sensitive debugging</div><div class="skill-desc">Found a capital-letter bug himself — a real programmer moment</div></div></div>
+    <div class="skill-card"><div class="skill-icon">🗂️</div><div><div class="skill-name">Explorer hierarchy</div><div class="skill-desc">Scripts belong inside the right part — he learned this the hard way</div></div></div>
+    <div class="skill-card"><div class="skill-icon">⚙️</div><div><div class="skill-name">Properties panel</div><div class="skill-desc">Anchored, Transparency, CanCollide — the settings that make things work</div></div></div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="section-tag">For Parents</div>
+  <h2>What we've learned along the way</h2>
+  <p class="section-intro">You don't need to know how to code to support a kid who's learning. Here's what's actually worked.</p>
+  <div class="tips-list">
+    <div class="tip">
+      <div class="tip-num">1</div>
+      <div class="tip-text">
+        <strong>Start with what they already love</strong>
+        <span>Ethan didn't want to "learn to code" — he wanted to build a Roblox game. The coding was just the tool to get there. Motivation comes from the output, not the curriculum.</span>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">2</div>
+      <div class="tip-text">
+        <strong>Let them struggle (a little)</strong>
+        <span>The moving platform took hours across multiple approaches. That frustration — and the eventual breakthrough — was worth more than any tutorial. Don't solve it for them too quickly.</span>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">3</div>
+      <div class="tip-text">
+        <strong>Real goals beat fake exercises</strong>
+        <span>Ethan isn't learning Lua — he's trying to earn Robux and have his friends play his game. Those stakes make every bug fix matter in a way that practice problems never could.</span>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">4</div>
+      <div class="tip-text">
+        <strong>Screenshots are worth a thousand words</strong>
+        <span>Instead of asking Ethan to describe the problem, we ask him to take a screenshot. What's visible in the Explorer, the Properties panel, or the error output tells us everything we need to know.</span>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">5</div>
+      <div class="tip-text">
+        <strong>Explain the why, not just the what</strong>
+        <span>When we explained <em>why</em> CFrame carries the player but TweenService doesn't, Ethan actually understood it. Kids this age can handle more conceptual depth than we expect.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Is your kid ready to start?</h2>
+  <p>If they play games, they can build games. All you need is Roblox Studio (free), a curious kid, and a little patience with case-sensitive variable names.</p>
+  <a href="https://www.roblox.com/create" target="_blank" class="btn btn-primary">Get Roblox Studio Free →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Made with 💜 by Ethan &amp; <span>Jonathan</span> · Built with Roblox Studio &amp; a lot of debugging
+</footer>
+
+</body>
+</html>
