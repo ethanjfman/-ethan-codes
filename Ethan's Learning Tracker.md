@@ -45,7 +45,7 @@ Ethan started with no scripting experience and is now writing and debugging real
 | `Instance.new()` (create from code) | 🔄 Introduced | Shown via leaderstats stage counter — a new "power" beyond editing existing parts |
 | `leaderstats` / `IntValue` | 🔄 Introduced | Stage/score counter shown by player name |
 | `game:GetService()` | 🔄 Introduced | Used to grab MarketplaceService/Players |
-| Gamepasses / `MarketplaceService` | 🔄 In progress | Speed Boost gamepass — `UserOwnsGamePassAsync`, `WaitForChild`, set WalkSpeed |
+| Gamepasses / `MarketplaceService` | ✅ First one built | Speed Boost gamepass created + ID wired into script — first monetisation feature! |
 
 ### Debugging Skills
 | Skill | Status | Notes |
