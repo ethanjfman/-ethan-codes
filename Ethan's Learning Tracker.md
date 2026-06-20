@@ -42,7 +42,10 @@ Ethan started with no scripting experience and is now writing and debugging real
 | `Transparency` and `CanCollide` | ✅ Confident | Used in disappearing platforms — done! |
 | `AssemblyLinearVelocity` (launch player) | 🔄 Developing | Core of jump pads — debugging placement, not yet live |
 | `FindFirstChildWhichIsA("Humanoid")` | 🔄 Introduced | Safer player detection in jump pad script |
-| Gamepasses / MarketplaceService | ⬜ Not started | Next major topic |
+| `Instance.new()` (create from code) | 🔄 Introduced | Shown via leaderstats stage counter — a new "power" beyond editing existing parts |
+| `leaderstats` / `IntValue` | 🔄 Introduced | Stage/score counter shown by player name |
+| `game:GetService()` | 🔄 Introduced | Used to grab MarketplaceService/Players |
+| Gamepasses / `MarketplaceService` | 🔄 In progress | Speed Boost gamepass — `UserOwnsGamePassAsync`, `WaitForChild`, set WalkSpeed |
 
 ### Debugging Skills
 | Skill | Status | Notes |
